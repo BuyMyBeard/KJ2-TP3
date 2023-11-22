@@ -18,6 +18,8 @@ public class EnemyAI : MonoBehaviour
     }
     private void Start()
     {
+        animator.SetFloat("MovementX", 0);
+        animator.SetFloat("MovmementY", 1);
         StartCoroutine(UpdateDestination());
     }
     IEnumerator UpdateDestination()
@@ -30,8 +32,8 @@ public class EnemyAI : MonoBehaviour
     }
     private void Update()
     {
-        animator.SetBool("IsWalking", agent.velocity != Vector3.zero);
-        animator.SetBool("IsJumping", agent.isOnOffMeshLink);
+        animator.SetBool("IsMoving", agent.velocity != Vector3.zero);
+        animator.SetBool("IsFalling", agent.isOnOffMeshLink);
     }
 
     private void OnTriggerEnter(Collider other)

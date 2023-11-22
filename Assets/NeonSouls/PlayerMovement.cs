@@ -30,6 +30,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float turnSpeed = 500;
     bool isGrounded = false;
     [SerializeField] float jumpSpeed = 5;
+    [SerializeField] float groundCheckDistance = .8f;
+    [SerializeField] LayerMask groundLayer;
 
     public bool IsSprinting { get; private set; } = false;
     Vector2 previousMovement = Vector2.zero;
@@ -59,8 +61,11 @@ public class PlayerMovement : MonoBehaviour
 
         characterController.Move(new Vector3(0, Gravity, 0));
         isGrounded = characterController.isGrounded;
+        animator.SetBool("IsFalling", !isGrounded);
         if (characterController.isGrounded)
             dropSpeed = -1f;
+        else
+            animator.SetBool("IsFalling", !(dropSpeed < 0 && Physics.Raycast(characterController.transform.position, Vector3.down, groundCheckDistance, groundLayer)));
         movement = Quaternion.Euler(0, camera.transform.eulerAngles.y, 0) * movement; //handle camera rotation
         Quaternion movementForward;
 
@@ -69,7 +74,6 @@ public class PlayerMovement : MonoBehaviour
             movementForward = Quaternion.LookRotation(direction, Vector3.up);
             characterController.transform.rotation = Quaternion.RotateTowards(characterController.transform.rotation, movementForward, turnSpeed * Time.deltaTime);
         }
-
         characterController.Move(movement);
     }
 
