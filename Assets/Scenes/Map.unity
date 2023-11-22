@@ -687,7 +687,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4532711101349018222, guid: d8196fc99b1dd454d94e681c6fd76bb1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 671559097}
   m_SourcePrefab: {fileID: 100100000, guid: d8196fc99b1dd454d94e681c6fd76bb1, type: 3}
 --- !u!1001 &506931478
 PrefabInstance:
@@ -5480,6 +5483,49 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &671559091 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4532711101349018222, guid: d8196fc99b1dd454d94e681c6fd76bb1, type: 3}
+  m_PrefabInstance: {fileID: 357178502}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &671559097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 671559091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc8d1fcae8a35c34c9d12f3a151f029d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  method: 2
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.4916687
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  duration: 0.8
 --- !u!1001 &671699561
 PrefabInstance:
   m_ObjectHideFlags: 0
