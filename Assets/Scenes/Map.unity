@@ -12659,6 +12659,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.x
       value: 0.03619468
       objectReference: {fileID: 0}
+    - target: {fileID: 7864088816223045949, guid: fb797ceacde57d843b1d8b37bd7ca06a, type: 3}
+      propertyPath: jumpSpeed
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

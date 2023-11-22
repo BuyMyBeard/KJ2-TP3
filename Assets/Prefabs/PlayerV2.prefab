@@ -61,8 +61,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 8.090053, y: 0, z: -3.7348857}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7592962965926481680}
   - {fileID: 4243297330543305371}
@@ -132,6 +132,7 @@ MonoBehaviour:
   deceleration: 25
   sprintStaminaCost: 15
   turnSpeed: 600
+  jumpSpeed: 7
 --- !u!114 &2272878932614692034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,8 +279,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6234473186061612013}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.036194663, y: -0, z: -0, w: 0.99934477}
-  m_LocalPosition: {x: 0, y: 3.116, z: -4.05}
+  m_LocalRotation: {x: 0.03619468, y: -0, z: -0, w: 0.99934477}
+  m_LocalPosition: {x: 0, y: 3.254889, z: -4.5000005}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

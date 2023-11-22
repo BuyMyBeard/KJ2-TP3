@@ -28,6 +28,8 @@ public class PlayerMovement : MonoBehaviour
     bool wasSprinting = false;
     bool isDecelerating = false;
     [SerializeField] float turnSpeed = 500;
+    bool isGrounded = false;
+    [SerializeField] float jumpSpeed = 5;
 
     public bool IsSprinting { get; private set; } = false;
     Vector2 previousMovement = Vector2.zero;
@@ -35,9 +37,6 @@ public class PlayerMovement : MonoBehaviour
     {
         get
         {
-            if (characterController.isGrounded)
-                dropSpeed = -1f;
-
             dropSpeed += Physics.gravity.y * Time.deltaTime;
             return dropSpeed * Time.deltaTime;
         }
@@ -56,9 +55,12 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        movement.y = Gravity;
         HandleMovement();
 
+        characterController.Move(new Vector3(0, Gravity, 0));
+        isGrounded = characterController.isGrounded;
+        if (characterController.isGrounded)
+            dropSpeed = -1f;
         movement = Quaternion.Euler(0, camera.transform.eulerAngles.y, 0) * movement; //handle camera rotation
         Quaternion movementForward;
 
@@ -133,9 +135,16 @@ public class PlayerMovement : MonoBehaviour
         while (targetSpeed < currentSpeed)
         {
             yield return null;
-            currentSpeed -= Time.deltaTime * deceleration; 
+            currentSpeed -= Time.deltaTime * deceleration;
         }
         currentSpeed = targetSpeed;
         isDecelerating = false;
+    }
+    void OnJump()
+    {
+        if (isGrounded)
+        {
+            dropSpeed = jumpSpeed;
+        }
     }
 }
