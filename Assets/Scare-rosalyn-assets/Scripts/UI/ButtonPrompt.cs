@@ -43,19 +43,17 @@ public class ButtonPrompt : MonoBehaviour
 
     void Awake()
     {
-        player = FindObjectOfType<PlayerMove>().transform;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         HidePrompt();
     }
-    void Update()
+    void OnInteract()
     {
-        
-        if (currentPrompt != null && PlayerInputs.InteractPress && Time.timeScale != 0)
+        if (currentPrompt != null)
         {
             currentPrompt.Interact();
             CancelPrompt(currentPrompt);
             currentPrompt = null;
             HidePrompt();
-            //StartCoroutine(Cooldown());
         }
     }
 

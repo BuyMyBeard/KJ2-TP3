@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class Door : Interactable
 {
+    Animator animator;
+    Collider collider;
+    protected override void Awake()
+    {
+        base.Awake();
+        animator = GetComponent<Animator>();
+        collider = GetComponent<Collider>();
+    }
     bool Openable = false;
     public void CollectKeys()
     {
@@ -14,7 +22,10 @@ public class Door : Interactable
     {
         if (Openable)
         {
-            gameObject.SetActive(false);
+
+            animator.SetTrigger("Open");
+            Openable = false;
+            collider.enabled = false;
         }
     }
 }

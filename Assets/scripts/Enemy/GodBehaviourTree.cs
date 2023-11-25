@@ -46,6 +46,7 @@ public class ShockwaveTask : TaskBT
         }
     }
 }
+
 public class GodBehaviourTree : MonoBehaviour
 {
     private Node rootBT;

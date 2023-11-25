@@ -15,6 +15,7 @@ public class EnemyAI : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         objective = GameObject.FindGameObjectWithTag("Player").transform;
+        animator.SetFloat("MovementSpeedMultiplier", 2.7f);
     }
     private void Start()
     {
