@@ -26,15 +26,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c2d43aac54ffdca4f8a7c6e4de9caf4c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 127.88306
+      value: 118.86
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c2d43aac54ffdca4f8a7c6e4de9caf4c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.55
+      value: 1.33
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c2d43aac54ffdca4f8a7c6e4de9caf4c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 48.24511
+      value: 49.52
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c2d43aac54ffdca4f8a7c6e4de9caf4c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -407,9 +407,6 @@ PrefabInstance:
       addedObject: {fileID: 8008762329903060236}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c2d43aac54ffdca4f8a7c6e4de9caf4c, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8932206653203754045}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c2d43aac54ffdca4f8a7c6e4de9caf4c, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1859181054306372561}
   m_SourcePrefab: {fileID: 100100000, guid: c2d43aac54ffdca4f8a7c6e4de9caf4c, type: 3}
 --- !u!1 &7492742690467230745 stripped
@@ -537,30 +534,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a96373350efc2b34683802dc219d2eb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thresholdDistance: 5
---- !u!136 &8932206653203754045
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7492742690467230745}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
+  patrolPoints: []
+  distanceThreshold: 0
+  timeToWaitBeforeGameOver: 2
 --- !u!195 &1859181054306372561
 NavMeshAgent:
   m_ObjectHideFlags: 0

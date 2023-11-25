@@ -12,13 +12,15 @@ public class Timer : MonoBehaviour
     public int seconds { get => (int)(timeElapsed % 60); }
     public int minutes { get => (int)(timeElapsed / 60); }
     public override string ToString() => $"{minutes.ToString("D2")}:{seconds.ToString("D2")}.{milliseconds.ToString("D3")}";
+    public bool IsRunning { get; set; } = true;
     void Awake()
     {
         display = GetComponent<TextMeshProUGUI>();
     }
     void Update()
     {
-        timeElapsed += Time.deltaTime;
+        if (IsRunning)
+            timeElapsed += Time.deltaTime;
         display.SetText(ToString());
     }
 }

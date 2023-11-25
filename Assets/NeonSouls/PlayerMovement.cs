@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     PlayerController playerController;
     Animator animator;
     float dropSpeed = 0;
+    public bool movementFrozen = false;
     float targetSpeed = 0;
     bool wasSprinting = false;
     bool isDecelerating = false;
@@ -74,7 +75,8 @@ public class PlayerMovement : MonoBehaviour
             movementForward = Quaternion.LookRotation(direction, Vector3.up);
             characterController.transform.rotation = Quaternion.RotateTowards(characterController.transform.rotation, movementForward, turnSpeed * Time.deltaTime);
         }
-        characterController.Move(movement);
+        if (!movementFrozen)
+            characterController.Move(movement);
     }
 
     void HandleMovement()
@@ -129,7 +131,7 @@ public class PlayerMovement : MonoBehaviour
             movementInput = currentSpeed * Time.deltaTime * movementInput.normalized;
         movement.x = movementInput.x;
         movement.z = movementInput.y;
-        if (movementMagnitude >= deadZone)
+        if (!movementFrozen && movementMagnitude >= deadZone)
             previousMovement = movementInput.normalized;
     }
 

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
@@ -11,7 +12,11 @@ public class GodAnimationEvents : MonoBehaviour
     }
     public void OnAttackHit()
     {
-        var fallApart = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<FallApart>();
-        fallApart.Activate();
+        var player = GameObject.FindGameObjectWithTag("Player");
+        var fallApart = player.GetComponentInParent<FallApart>();
+        fallApart.Decompose();
+        player.GetComponentInParent<PlayerMovement>().movementFrozen = true;
+        GetComponent<Animator>().SetBool("IsDoingShockwave", false);
+        GameObject.FindObjectOfType<Timer>().IsRunning = false;
     }
 }

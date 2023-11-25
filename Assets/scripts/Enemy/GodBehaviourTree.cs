@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Burst;
 using UnityEngine;
 using UnityEngine.AI;
 public class WaitUntilTargetClose : TaskBT
@@ -34,7 +35,7 @@ public class ShockwaveTask : TaskBT
         {
             hasStartedOnce = true;
             Animator.SetTrigger("Shockwave");
-            Animator.SetBool("IsDoingShockwave", true);
+            Animator.SetBool("IsDoingShockwave", true); // apparently OnStateEnter isn't called during SetTrigger
         }
 
         if (Animator.GetBool("IsDoingShockwave"))
@@ -51,6 +52,7 @@ public class GodBehaviourTree : MonoBehaviour
 {
     private Node rootBT;
     [SerializeField] float thresholdDistance;
+    [SerializeField] float timeToWaitBeforeGameOver;
     private void Awake()
     {
         var player = GameObject.FindGameObjectWithTag("Player");
@@ -63,11 +65,19 @@ public class GodBehaviourTree : MonoBehaviour
         {
             new ShockwaveTask(GetComponent<Animator>())
         };
+        TaskBT[] tasks2 = new TaskBT[]
+        {
+            new Wait(timeToWaitBeforeGameOver, null, delegate
+            {
+                GameObject.FindObjectOfType<GameStateManager>().Lose("You were slain.........\nYou lasted ");
+            })
+        };
 
         TaskNode waitUntilNode = new TaskNode("waitUntil", tasks0);
         TaskNode shockwaveNode = new TaskNode("dothefunnies", tasks1);
+        TaskNode waitGameOverNode = new TaskNode("waitGameOver", tasks2);
 
-        rootBT = new Sequence("seq1", new[] { waitUntilNode, shockwaveNode });
+        rootBT = new Sequence("seq1", new[] { waitUntilNode, shockwaveNode, waitGameOverNode });
     }
 
     void Update()

@@ -75,8 +75,8 @@ public class FallApart : MonoBehaviour
     public void Decompose()
     {
         GameObject dummy = Instantiate(character);
+        character.SetActive(false);
         dummy.transform.SetPositionAndRotation(character.transform.position, character.transform.rotation);
-        model.SetActive(false);
         dummy.GetComponent<FallApart>().Activate();
     }
 }

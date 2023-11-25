@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -81,20 +82,32 @@ public class Wait : TaskBT
 {
     private float ElapsedTime { get; set; } = 0;
     private float SecondsToWait { get; set; } = 0;
+    private Action<float, float> OnUpdate { get; }
+    private Action OnComplete { get; }
+    private bool Scaled { get; }
 
-    public Wait(float secondsToWait) => SecondsToWait = secondsToWait;
+    public Wait(float secondsToWait, Action<float, float> onUpdate = null, Action onComplete = null, bool scaled = true)
+    {
+        SecondsToWait = secondsToWait;
+        OnUpdate = onUpdate;
+        OnComplete = onComplete;
+        Scaled = scaled;
+    }
 
     //On tient pour acquis qu'Execute va être appeler à chaque frame
     public override TaskState Execute()
     {
-        ElapsedTime += Time.deltaTime;
+        ElapsedTime += Scaled ? Time.deltaTime : Time.unscaledDeltaTime;
 
         if (ElapsedTime > SecondsToWait)
         {
+            if (OnComplete != null)
+                OnComplete();
             ElapsedTime = 0;
             return TaskState.Success;
         }
-
+        if (OnUpdate != null)
+            OnUpdate(ElapsedTime, SecondsToWait);
         return TaskState.Running;
     }
 }
